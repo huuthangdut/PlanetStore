@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Mua sắm online cùng Planet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{ Html.RenderAction("_HomeSlider", "Home"); }
+<!-- /.home-v1-slider -->
+
+@{ Html.RenderAction("_HomeDealsAndTabs", "Home");}
+
+@{ Html.RenderAction("_ProductsGrid", "Products");}
+
+@{ Html.RenderAction("_BestSellerProducts", "Products"); }
+
+@{Html.RenderAction("_NewProducts", "Products");}
+

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Planet.Web.Models.Products.ProductViewModel>
+
+<div class="related products">
+    <h2>Sản phẩm tương tự</h2>
+
+    <ul class="products columns-5">
+        <li class="product">
+            <div class="product-outer">
+                <div class="product-inner">
+                    <span class="loop-product-categories">
+                        <a href="product-category.html" rel="tag">Smartphones</a>
+                    </span>
+                    <a href="single-product.html">
+                        <h3>Notebook Black Spire V Nitro VN7-591G</h3>
+                        <div class="product-thumbnail">
+                            <img data-echo="/Assets/client/images/products/1.jpg" src="/Assets/client/images/blank.gif" alt="">
+                        </div>
+                    </a>
+
+                    <div class="price-add-to-cart">
+                        <span class="price">
+                            <span class="electro-price">
+                                <ins>
+                                    <span class="amount">&#036;1,999.00</span>
+                                </ins>
+                            </span>
+                        </span>
+                        <a rel="nofollow" href="single-product.html" class="button add_to_cart_button">Add to cart</a>
+                    </div>
+                    <!-- /.price-add-to-cart -->
+
+                    <div class="hover-area">
+                        <div class="action-buttons">
+                            <a href="#" rel="nofollow" class="add_to_wishlist"> Wishlist</a>
+                            <a href="#" class="add-to-compare-link">Compare</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.product-inner -->
+            </div>
+            <!-- /.product-outer -->
+        </li>
+        @foreach (var item in Model)
+        {
+            <li class="product">
+                <div class="product-outer">
+                    <div class="product-inner">
+                        <span class="loop-product-categories">
+                            <a href="product-category.html" rel="tag">@item.ProductCategory.Name</a>
+                        </span>
+                        <a href="single-product.html">
+                            <h3>@item.Name</h3>
+                            <div class="product-thumbnail">
+                                <img data-echo="@item.ThumbnailImage" src="/Assets/client/images/blank.gif" alt="">
+                            </div>
+                        </a>
+
+                        <div class="price-add-to-cart">
+                            <span class="price">
+                                <span class="electro-price">
+                                    <ins>
+                                        <span class="amount">@item.UnitPrice.ToString("N0") đ</span>
+                                    </ins>
+                                </span>
+                            </span>
+                            <a rel="nofollow" href="javascript:void(0)" class="button add_to_cart_button js-add-to-cart" data-id="@item.Id">Thêm vào giỏ hàng</a>
+                        </div>
+                        <!-- /.price-add-to-cart -->
+
+                        <div class="hover-area">
+                            <div class="action-buttons">
+                                <a href="#" rel="nofollow" class="add_to_wishlist"> Yêu thích</a>
+                                <a href="#" class="add-to-compare-link">So sánh</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.product-inner -->
+                </div>
+                <!-- /.product-outer -->
+            </li>
+        }
+    </ul>
+    <!-- /.products -->
+</div>
+<!-- /.related -->

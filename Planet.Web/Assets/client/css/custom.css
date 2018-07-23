@@ -1,0 +1,70 @@
+﻿.back-to-top {
+    background: none;
+    margin: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    z-index: 100;
+    display: none;
+    text-decoration: none;
+    color: #00abc5;
+    /*    background-color: #00abc5;*/
+}
+
+.back-to-top i {
+    font-size: 50px;
+}
+
+
+.ui-autocomplete {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.toast-info {
+    background-color: #00abc5;
+}
+
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.field-validation-error {
+    display: block;
+    margin-top: 7px;
+    margin-left: 5px;
+    color: #eea236;
+}
+
+.input-validation-error {
+    border: 1px solid #eea236 !important;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary-errors ul li {
+    list-style-type: none;
+}
+
+
+.btn-facebook {
+    opacity: 0.9;
+    color: white;
+    background-color: #2b4b90;
+}
+
+.btn-google-plus {
+    opacity: 0.9;
+    color: white;
+    background-color: #df4a32;
+}

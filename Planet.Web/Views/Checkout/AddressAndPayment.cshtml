@@ -1,0 +1,150 @@
+﻿@using Planet.Web.Models.Shopping
+@model OrderViewModel
+
+@{
+    ViewBag.Title = "Thanh toán giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var paymentMethods = ViewBag.PaymentMethods as IEnumerable<PaymentMethodViewModel>;
+}
+
+@section breadcrumb {
+    <nav class="woocommerce-breadcrumb"><a href="/">Trang chủ</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Thanh toán</nav>
+}
+
+@section scripts {
+    <script src="~/Assets/client/js/controller/checkoutController.js"></script>
+}
+
+<article class="page type-page status-publish hentry">
+    <header class="entry-header"><h2 itemprop="name" class="entry-title">Thanh toán</h2></header><!-- .entry-header -->
+
+    @using (Html.BeginForm("AddressAndPayment", "Checkout", FormMethod.Post, new { @class = "checkout woocommerce-checkout" }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="customer_details" class="col2-set">
+            <div class="col-1">
+                <div class="woocommerce-billing-fields">
+
+                    <h3>Thông tin thanh toán</h3>
+
+                    <p class="form-row form-row-wide create-account">
+                        <input type="checkbox" id="autofill-billing" class="input-checkbox">
+                        <label class="checkbox" for="autofill-billing">Dùng thông tin đăng nhập</label>
+                    </p>
+                    <p class="form-row form-row form-row-first ">
+                        @Html.LabelFor(m => m.FirstName)<abbr title="Yêu cầu nhập họ" class="required">*</abbr>
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "input-text", @id = "bill-first-name" })
+                        @Html.ValidationMessageFor(m => m.FirstName)
+                    </p>
+
+                    <p class="form-row form-row form-row-last ">
+                        @Html.LabelFor(m => m.LastName)<abbr title="Yêu cầu nhập tên" class="required">*</abbr>
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "input-text", @id = "bill-last-name" })
+                        @Html.ValidationMessageFor(m => m.LastName)
+                    </p>
+                    <div class="clear"></div>
+
+                    <p class="form-row form-row form-row-first">
+                        @Html.LabelFor(m => m.Email)<abbr title="Yêu cầu email" class="required">*</abbr>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "input-text ", type = "email", @id = "bill-email" })
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </p>
+
+                    <p class="form-row form-row form-row-last">
+                        @Html.LabelFor(m => m.PhoneNumber)<abbr title="Yêu cầu số điện thoại" class="required">*</abbr>
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "input-text ", type = "tel", @id = "bill-phone-number" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber)
+                    </p>
+                    <div class="clear"></div>
+
+                    <p class="form-row form-row form-row-wide">
+                        @Html.LabelFor(m => m.Country)<abbr title="Yêu cầu nhập quốc gia" class="required">*</abbr>
+                        @Html.TextBoxFor(m => m.Country, new { @class = "input-text", @id = "bill-country" })
+                        @Html.ValidationMessageFor(m => m.Country)
+                    </p>
+                    <p class="form-row form-row form-row-wide">
+                        @Html.LabelFor(m => m.Address)<abbr title="Yêu cầu nhập địa chỉ" class="required">*</abbr>
+                        @Html.TextBoxFor(m => m.Address, new { @class = "input-text", @id = "bill-address" })
+                        @Html.ValidationMessageFor(m => m.Address)
+                    </p>
+                    <p class="form-row form-row form-row-first ">
+                        @Html.LabelFor(m => m.Province)<abbr title="Yêu cầu nhập tỉnh/thành" class="required">*</abbr>
+                        @Html.TextBoxFor(m => m.Province, new { @class = "input-text", @id = "bill-province" })
+                        @Html.ValidationMessageFor(m => m.Province)
+                    </p>
+                    <p class="form-row form-row form-row-last ">
+                        @Html.LabelFor(m => m.District)<abbr title="Yêu cầu nhập quận/huyện" class="required">*</abbr>
+                        @Html.TextBoxFor(m => m.District, new { @class = "input-text", @id = "bill-district" })
+                        @Html.ValidationMessageFor(m => m.District)
+                    </p>
+
+                    <div class="clear"></div>
+
+
+
+                </div>
+            </div>
+
+            <div class="col-2">
+                <h3>Thông tin giao hàng</h3>
+                <div class="woocommerce-shipping-fields">
+                    <h3 id="ship-to-different-address">
+                        <label class="checkbox" for="ship-to-different-address-checkbox">Giao đến địa chỉ khác</label>
+                        <input type="checkbox" name="ship_to_different_address" class="input-checkbox" id="ship-to-different-address-checkbox">
+                    </h3>
+                    <div class="clear"></div>
+                    <div id="different-address">
+                        @*                        <p class="form-row form-row form-row-wide address-field ">*@
+                        @*                            @Html.LabelFor(m => m.Address)<abbr title="Yêu cầu nhập địa chỉ" class="required">*</abbr>*@
+                        @*                            @Html.TextBoxFor(m => m.Address, new { @class = "input-text " })*@
+                        @*                            @Html.ValidationMessageFor(m => m.Address)*@
+                        @*                        </p>*@
+                        @**@
+                        @*                        <p class="form-row form-row form-row-first ">*@
+                        @*                            @Html.LabelFor(m => m.Province)<abbr title="Yêu cầu nhập tỉnh/thành" class="required">*</abbr>*@
+                        @*                            @Html.TextBoxFor(m => m.Province, new { @class = "input-text" })*@
+                        @*                            @Html.ValidationMessageFor(m => m.Address)*@
+                        @*                        </p>*@
+                        @*                        <p class="form-row form-row form-row-last ">*@
+                        @*                            @Html.LabelFor(m => m.District)<abbr title="Yêu cầu nhập quận/huyện" class="required">*</abbr>*@
+                        @*                            @Html.TextBoxFor(m => m.District, new { @class = "input-text" })*@
+                        @*                            @Html.ValidationMessageFor(m => m.Address)*@
+                        @*                        </p>*@
+                    </div>
+
+                    <p id="order_comments_field" class="form-row form-row notes">
+                        @Html.LabelFor(m => m.Message)
+                        @Html.TextAreaFor(m => m.Message, new { @class = "input-text ", cols = "5", rows = "2", placeholder = "Ghi chú về đơn hàng." })
+                        @Html.ValidationMessageFor(m => m.Message)
+                    </p>
+                </div>
+            </div>
+        </div>
+        Html.RenderAction("_ReviewCart", "ShoppingCart");
+        <div class="woocommerce-checkout-payment" id="payment">
+            <ul class="wc_payment_methods payment_methods methods">
+                @foreach (var method in paymentMethods)
+                {
+                    <li class="wc_payment_method payment_method_bacs">
+                        @Html.RadioButtonFor(m => m.PaymentMethodId, method.Id)
+                        <label for="@method.Id">@method.Name</label>
+                        <div class="payment_box payment_method_bacs">
+                            <p>@method.Description</p>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="form-row place-order">
+                <p class="form-row terms wc-terms-and-conditions">
+                    <input type="checkbox" id="terms" name="terms" class="input-checkbox">
+                    <label class="checkbox" for="terms">Tôi đã đọc và chấp nhận <a target="_blank" href="terms-and-conditions.html">điều khoản &amp; quy định</a> <span class="required">*</span></label>
+                    <input type="hidden" value="1" name="terms-field">
+                </p>
+
+                <input type="submit" data-value="Place order" value="Tiến hành đặt hàng" class="button alt">
+            </div>
+        </div>
+    }
+
+</article>
+

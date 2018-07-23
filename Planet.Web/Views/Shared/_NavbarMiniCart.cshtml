@@ -1,0 +1,55 @@
+﻿@model Planet.Web.Models.Shopping.ShoppingCartViewModel
+
+<ul class="navbar-mini-cart navbar-nav animate-dropdown nav pull-right flip">
+    <li class="nav-item dropdown">
+        <a href="@Url.Action("Index", "ShoppingCart")" class="nav-link" data-toggle="dropdown">
+            <i class="ec ec-shopping-bag"></i>
+            <span class="cart-items-count count" id="cart-quantity">@Model.CartQuantity</span>
+            <span class="cart-items-total-price total-price">
+                <span class="amount cart-total">@Model.CartTotal.ToString("N0") đ</span>
+            </span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-mini-cart">
+            <li>
+                <div class="widget_shopping_cart_content">
+                    @if (Model.CartQuantity > 0)
+                    {
+                        <ul class="cart_list product_list_widget ">
+                            @foreach (var item in Model.CartItems)
+                            {
+                                <li class="mini_cart_item" id="mini-cart-row-@item.ProductId">
+                                    <a title="Xoá sản phẩm này" class="remove js-remove-cart-item" data-id="@item.ProductId" href="javascript:void(0)">×</a>
+                                    <a href="#">
+                                        <img class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" src="~/Assets/client/images/products/mini-cart1.jpg" alt="">@item.Product.Name
+                                    </a>
+
+                                    <span class="quantity">
+                                        @item.Quantity ×
+                                        <span class="amount">@item.Product.UnitPrice.ToString("N0")</span>
+                                    </span>
+                                </li>
+                            }
+                        </ul>
+                        <!-- end product list -->
+
+                        <p>
+                            <strong>Tạm tính:</strong>
+                            <span class="amount cart-total">@Model.CartTotal.ToString("N0") đ</span>
+                        </p>
+
+                        <p class="buttons">
+                            <a class="button wc-forward" href="@Url.Action("Index", "ShoppingCart")">Giỏ hàng</a>
+                            <a class="button checkout btn-sm wc-forward" href="@Url.Action("AddressAndPayment", "Checkout")">Checkout</a>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            Không có sản phẩm nào trong giỏ hàng.
+                        </p>
+                    }
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>

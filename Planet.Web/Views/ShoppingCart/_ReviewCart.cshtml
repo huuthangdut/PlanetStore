@@ -1,0 +1,51 @@
+﻿@model Planet.Web.Models.Shopping.ShoppingCartViewModel
+
+<h3 id="order_review_heading">Đơn hàng của bạn</h3>
+
+<div class="woocommerce-checkout-review-order" id="order_review">
+    <table class="shop_table woocommerce-checkout-review-order-table">
+        <thead>
+        <tr>
+            <th class="product-thumbnail">Hình ảnh</th>
+            <th class="product-name">Sản phẩm</th>
+            <th class="product-total">Thành tiền</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr class="cart_item">
+                <td class="product-thumbnail">
+                    <a href="#"><img width="80" height="80" src="@item.Product.ThumbnailImage" alt="@item.Product.Name"></a>
+                </td>
+                <td class="product-name">
+                    @item.Product.Name
+                    <strong class="product-quantity">× @item.Quantity</strong>
+                </td>
+                <td class="product-total">
+                    <span class="amount">@((item.Quantity * item.Product.UnitPrice).ToString("N0")) đ</span>
+                </td>
+            </tr>
+        }
+        
+        </tbody>
+        <tfoot>
+            <tr class="cart-subtotal">
+                <th>Tạm tính</th>
+                <td><span class="amount">@Model.CartTotal.ToString("N0") đ</span></td>
+            </tr>
+
+            <tr class="shipping">
+                <th>Phí giao hàng</th>
+                <td data-title="Shipping">Giao hàng tiết kiệm: <span class="amount">0 đ</span> <input type="hidden" class="shipping_method" value="international_delivery" id="shipping_method_0" data-index="0" name="shipping_method[0]"></td>
+            </tr>
+
+            <tr class="order-total">
+                <th>Tổng tiền</th>
+                <td><strong><span class="amount">@Model.CartTotal.ToString("N0") đ</span></strong> </td>
+            </tr>
+        </tfoot>
+    </table>
+
+   
+</div>

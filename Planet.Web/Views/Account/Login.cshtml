@@ -1,0 +1,87 @@
+﻿@using Planet.Web.Models.Account
+@model Planet.Web.Models.Account.LoginViewModel
+
+@{
+    ViewBag.Title = "Đăng nhập tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section breadcrumb {
+    <nav class="woocommerce-breadcrumb"><a href="/">Trang chủ</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Đăng nhập</nav><!-- .woocommerce-breadcrumb -->
+}
+
+<article id="post-8" class="hentry">
+
+    <div class="entry-content">
+        <div class="woocommerce">
+            <div class="customer-login-form">
+                <span class="or-text">or</span>
+
+                <div class="col2-set" id="customer_login">
+
+                    <div class="col-1">
+
+                        <h2>Khách hàng cũ</h2>
+
+                        @using (Html.BeginForm("Login", "Account", new { @returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <p class="before-login-text">Đăng nhập vào tài khoản nếu bạn là khách hàng cũ</p>
+
+                            @Html.ValidationSummary(true, "", new {@class= "alert alert-warning" })
+
+                            <p class="form-row form-row-wide">
+                                @Html.LabelFor(m => m.Email)
+                                @Html.TextBoxFor(m => m.Email, new { @class = "input-text" })
+                            </p>
+
+                            <p class="form-row form-row-wide">
+                                @Html.LabelFor(m => m.Password)
+                                @Html.PasswordFor(m => m.Password, new { @class = "input-text" })
+                            </p>
+
+                            <p class="form-row">
+                                <input class="button" type="submit" value="Đăng nhập">
+                                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "inline ml-10" }) Ghi nhớ đăng nhập
+                            </p>
+
+                            <p><a href="/">Quên mật khẩu ?</a></p>
+                        }
+
+                        <hr />
+
+                        @{ Html.RenderPartial("_ExternalLoginListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl }); }
+                    </div><!-- .col-1 -->
+
+                    <div class="col-2">
+
+                        <h2>Khách hàng mới</h2>
+
+                        <div class="register">
+
+                            <p class="before-register-text">Đăng ký ngay tài khoản nếu bạn là khách hàng mới</p>
+
+                            <p class="form-row">
+                                <a class="button" href="@Url.Action("Register", "Account")">Đến trang đăng ký</a>
+                            </p>
+
+                            <div class="register-benefits">
+                                <h3>Đăng ký ngay hôm nay và bạn có thể :</h3>
+                                <ul>
+                                    <li>Thanh toán giỏ hàng nhanh chóng</li>
+                                    <li>Kiểm tra tình trạng đơn hàng dễ dàng</li>
+                                    <li>Hưởng các ưu đãi cho thành viên</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div><!-- .col-2 -->
+
+                </div><!-- .col2-set -->
+
+            </div><!-- /.customer-login-form -->
+        </div><!-- .woocommerce -->
+    </div><!-- .entry-content -->
+
+</article><!-- #post-## -->

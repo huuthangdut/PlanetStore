@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/css/bootstrap.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/css/font-awesome.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/css/animate.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/css/font-electro.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/css/owl-carousel.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/css/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/css/colors/flat-blue.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/vendor/jquery-ui-1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/vendor/jquery-ui-1.12.1/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/vendor/toast/toastr.css" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/client/css/custom.css" />
+
+    @*    @Styles.Render("~/bundles/bootstrap")*@
+    @*    @Styles.Render("~/bundles/css")*@
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic'
+          rel='stylesheet' type='text/css'>
+
+    @RenderSection("styles", required: false)
+
+    <link rel="shortcut icon" href="/Assets/client/images/fav-icon.png">
+</head>
+
+<body class="page home page-template-default">
+    <div id="page" class="hfeed site">
+        <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+        <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+        @{ Html.RenderPartial("_TopBarMenu");}
+        <!-- /.top-bar -->
+
+        @{ Html.RenderAction("_Header", "Home"); }
+        <!-- #masthead -->
+
+        <div id="content" class="site-content" tabindex="-1">
+            <div class="container">
+                @RenderSection("breadcrumb", required: false)
+                <div id="primary" class="content-area">
+                    <main id="main" class="site-main">
+                        @RenderBody()
+                    </main>
+                    <!-- #main -->
+                </div>
+                <!-- #primary -->
+            </div>
+            <!-- .container -->
+        </div>
+        <!-- #content -->
+
+        @{ Html.RenderAction("_BrandsCarousel", "Home"); }
+
+        @{ Html.RenderAction("_Footer", "Home"); }
+        <!-- #colophon -->
+
+        <a href="#" class="back-to-top" style="display: inline;">
+            <i class="fa fa-arrow-circle-up"></i>
+        </a>
+    </div>
+    <!-- #page -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

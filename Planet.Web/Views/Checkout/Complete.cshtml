@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Đặt hàng thành công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section breadcrumb {
+    <nav class="woocommerce-breadcrumb"><a href="/">Trang chủ</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Đặt hàng thành công</nav>
+}
+
+    <article class="page type-page status-publish hentry">
+
+        <header class="entry-header">
+            <img class="center-block" style="padding-bottom: 20px;" src="~/Assets/client/images/order-success.png" />
+            <h2 itemprop="name" class="entry-title">Đặt hàng thành công</h2>
+        </header><!-- .entry-header -->
+
+        <div style="font-size: 20px; color: #434343; text-align: center; font-family: Open Sans; font-weight: 400; font-style: normal">
+            <p>
+                Số đơn hàng: <strong>#@Model</strong>
+            </p>
+            <p>
+                Đơn hàng đang được xử lý. Cảm ơn quý khách đã sử dụng dịch vụ của chúng tôi!
+            </p>
+        </div>
+    </article>
+

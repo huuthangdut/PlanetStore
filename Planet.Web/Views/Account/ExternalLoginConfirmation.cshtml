@@ -1,0 +1,34 @@
+﻿@model Planet.Web.Models.Account.ExternalLoginConfirmationViewModel
+@{
+    ViewBag.Title = "ExternalLoginConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section breadcrumb {
+    <nav class="woocommerce-breadcrumb"><a href="/">Trang chủ</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Đăng nhập</nav>
+}
+
+<div class="center-block">
+    <div class="info-404">
+        <div class="text-xs-center inner-bottom-xs">
+            <h3>Bạn vừa xác thực thành công với <strong>@ViewBag.LoginProvider</strong>.</h3>
+            <p class="lead">Vui lòng nhập tên người dùng bên dưới và nhấp vào nút Đăng ký để hoàn tất đăng nhập.</p>
+            <hr class="m-y-2">
+            <div class="inner-bottom-xs">
+                <div>
+                    @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        @Html.LabelFor(m => m.Email, new { @class = "screen-reader-text" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "search-field" })
+                        @Html.ValidationMessageFor(m => m.Email)
+
+                        <input type="submit" value="Đăng ký">
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

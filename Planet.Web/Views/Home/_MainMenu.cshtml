@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Planet.Data.Core.Domain.Menu>
+
+<div class="primary-nav animate-dropdown">
+    <div class="clearfix">
+        <button class="navbar-toggler hidden-sm-up pull-right flip" type="button" data-toggle="collapse" data-target="#default-header">
+            &#9776;
+        </button>
+    </div>
+
+    <div class="collapse navbar-toggleable-xs" id="default-header">
+        <nav>
+            <ul id="menu-main-menu" class="nav nav-inline yamm">
+                @foreach (var menuItem in Model)
+                {
+                    <li class="menu-item">
+                        <a title="@menuItem.Name" href="@menuItem.Url">@menuItem.Name</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+
+    </div>
+</div>

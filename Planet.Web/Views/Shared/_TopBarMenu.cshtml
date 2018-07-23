@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNet.Identity
+ <div class="top-bar">
+    <div class="container">
+        <nav>
+            <ul id="menu-top-bar-left" class="nav nav-inline pull-left animate-dropdown flip">
+                <li class="menu-item animate-dropdown">
+                    <a title="Chào mừng đến với Planet Store" href="/">Chào mừng đến với Planet Store</a>
+                </li>
+            </ul>
+        </nav>
+
+        <nav>
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {@id = "logoutForm"}))
+                {
+                    @Html.AntiForgeryToken()
+                    <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
+                        <li class="menu-item animate-dropdown">
+                            <a title="Track Your Order" href="/track-order">
+                                <i class="ec ec-transport"></i>Kiểm tra đơn hàng
+                            </a>
+                        </li>
+                        <li class="menu-item animate-dropdown">
+                            <a title="Mua sắm" href="/shop">
+                                <i class="ec ec-shopping-bag"></i>Mua sắm
+                            </a>
+                        </li>
+                        <li class="menu-item animate-dropdown">
+                            <a title="Đăng ký" href="@Url.Action("Register", "Account")">
+                                <i class="ec ec-user"></i>Đăng ký
+                            </a>
+                        </li>
+                        <li class="menu-item animate-dropdown">
+                            <a title="Thoát" href="javascript:document.getElementById('logoutForm').submit()"><i class="ec ec-user"></i>Thoát</a>
+                        </li>
+                    </ul>
+                }
+            }
+            else
+            {
+                    <ul id="menu-top-bar-right" class="nav nav-inline pull-right animate-dropdown flip">
+                        <li class="menu-item animate-dropdown">
+                            <a title="Track Your Order" href="/track-order">
+                                <i class="ec ec-transport"></i>Kiểm tra đơn hàng
+                            </a>
+                        </li>
+
+                        <li class="menu-item animate-dropdown">
+                            <a title="Mua sắm" href="/shop">
+                                <i class="ec ec-shopping-bag"></i>Mua sắm
+                            </a>
+                        </li>
+                        <li class="menu-item animate-dropdown">
+                            <a title="Đăng ký" href="@Url.Action("Register", "Account")">
+                                <i class="ec ec-user"></i>Đăng ký
+                            </a>
+                        </li>
+                        <li class="menu-item animate-dropdown">
+                            <a title="Đăng nhập" href="@Url.Action("Login", "Account")">
+                                <i class="ec ec-user"></i>Đăng nhập
+                            </a>
+                        </li>
+
+                    </ul>
+            }
+
+
+        </nav>
+    </div>
+</div>

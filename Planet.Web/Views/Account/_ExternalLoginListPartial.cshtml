@@ -1,0 +1,12 @@
+﻿@model Planet.Web.Models.Account.ExternalLoginListViewModel
+
+@using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-row form-row-first">
+        <button type="submit" class="btn btn-facebook btn-sm" id="Facebook" name="provider" value="Facebook"><i class="fa fa-facebook"></i> | Đăng nhập với Facebook</button>
+    </div>
+    <div class="form-row form-row-last">
+        <button type="submit" class="btn btn-google-plus btn-sm" id="Google" name="provider" value="Google"><i class="fa fa-google-plus"></i> | Đăng nhập với Google</button>
+    </div>
+}

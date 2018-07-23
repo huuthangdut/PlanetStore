@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Planet.Web.Models.SlideViewModel>
+
+<div class="home-v1-slider">
+    <!-- ========================================== SECTION – HERO : END========================================= -->
+
+    <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+        @foreach (var item in Model)
+        {
+            <div class="item" style="background-image: url(@item.ImageUrl);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-5">
+                            <div class="caption vertical-center text-left">
+                                <div class="hero-1 fadeInDown-1">
+                                    @item.Name
+                                </div>
+
+                                <div class="hero-subtitle fadeInDown-2">
+                                    @item.Description
+                                </div>
+                                <div class="hero-action-btn fadeInDown-3">
+                                    <a href="@item.Url" class="big le-button ">Xem ngay</a>
+                                </div>
+                            </div>
+                            <!-- /.caption -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container -->
+            </div>
+            <!-- /.item -->
+        }
+    </div>
+    <!-- /.owl-carousel -->
+    <!-- ========================================= SECTION – HERO : END ========================================= -->
+
+</div>

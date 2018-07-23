@@ -1,0 +1,149 @@
+﻿@using BotDetect.Web.Mvc
+@model Planet.Web.Models.FeedbackViewModel
+
+@{
+    ViewBag.Title = "Liên hệ với chúng tôi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section breadcrumb {
+    <nav class="woocommerce-breadcrumb"><a href="/">Trang chủ</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Liên hệ</nav>
+}
+
+@section styles {
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+
+    <style>
+        #map {
+            height: 400px;
+            width: 100vw;
+            position: relative;
+            margin-left: -50vw;
+            left: 50%;
+            margin-bottom: 3em;
+        }
+    </style>
+}
+
+<article class="post-2508 page type-page status-publish hentry" id="post-2508">
+    <div itemprop="mainContentOfPage" class="entry-content">
+        <div id="map">
+        </div>
+        <div class="vc_row-full-width vc_clearfix"></div>
+        <div class="vc_row wpb_row vc_row-fluid">
+            <div class="contact-form wpb_column vc_column_container vc_col-sm-9 col-sm-9">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                        <div class="wpb_text_column wpb_content_element ">
+                            <div class="wpb_wrapper">
+                                <h2 class="contact-page-title">Thông tin liên hệ</h2>
+                            </div>
+                        </div>
+                        <div lang="en-US" dir="ltr" id="wpcf7-f2507-p2508-o1" class="wpcf7" role="form">
+                            <div class="screen-reader-response"></div>
+                            @using (Html.BeginForm("SendFeedback", "Contact", FormMethod.Post, new { @class = "wpcf7-form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group row">
+                                    <div class="col-xs-12 col-md-6">
+                                        @Html.LabelFor(m => m.Name)<br />
+                                        @Html.TextBoxFor(m => m.Name, new { @class = "input-text", @size = "40" })
+                                        @Html.ValidationMessageFor(m => m.Name)
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        @Html.LabelFor(m => m.Email)<br />
+                                        @Html.TextBoxFor(m => m.Email, new { @class = " input-text", @size = "40", @type = "email" })
+                                        @Html.ValidationMessageFor(m => m.Email)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Subject)<br />
+                                    @Html.TextBoxFor(m => m.Subject, new { @class = "input-text", @size = "40" })
+                                    @Html.ValidationMessageFor(m => m.Subject)
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Message)<br />
+                                    @Html.TextAreaFor(m => m.Message, new { rows = "10", cols = "40" })
+                                    @Html.ValidationMessageFor(m => m.Message)
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <label>Nhập mã xác nhận</label><br />
+                                        @{ MvcCaptcha contactCaptcha = new MvcCaptcha("ContactCaptcha"); }
+                                        @Html.TextBox("CaptchaCode", "", new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <br />
+                                        @Html.Captcha(contactCaptcha)
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <input type="submit" value="Gửi phản hồi">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="store-info wpb_column vc_column_container vc_col-sm-3 col-sm-3">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                        <div class="wpb_text_column wpb_content_element ">
+                            <div class="wpb_wrapper">
+                                <h2 class="contact-page-title">Địa chỉ cửa hàng</h2>
+                                <address>
+                                    Địa chỉ:
+                                    @Model.ContactInfo.Address<br>
+                                    Phường @Model.ContactInfo.Ward<br>
+                                    Quận @Model.ContactInfo.District<br>
+                                    TP. @Model.ContactInfo.Province<br>
+                                    Điện thoại: @Model.ContactInfo.PhoneNumber
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+@section scripts {
+    <script>
+        function initMap() {
+            var planet = { lat: @Model.ContactInfo.Latitude, lng: @Model.ContactInfo.Longitude };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: planet
+            });
+
+            var contentString = '<div id="content">' +
+                '<div id="siteNotice">' +
+                '</div>' +
+                '<h1 id="firstHeading" class="firstHeading">Planet Store</h1>' +
+                '<div id="bodyContent">' +
+                '<p><b>Planet Store</b></p>' +
+                '</div>' +
+                '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: planet,
+                map: map,
+                title: 'Planet Store'
+            });
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2_KgR2Jqxnwtqpp4XpxhpIqdYh4Y2em4&callback=initMap">
+    </script>
+}

@@ -1,0 +1,15 @@
+﻿@using (Html.BeginForm("Search", "Products", FormMethod.Get, new { @class = "navbar-search" }))
+{
+    <label class="sr-only screen-reader-text" for="search">Tìm kiếm</label>
+    <div class="input-group">
+        <input type="text" id="search" class="form-control search-field" dir="ltr" value="" name="s" placeholder="Tìm kiếm" />
+        <div class="input-group-addon search-categories">
+            @Html.DropDownList("CategoryId", ViewBag.SelectListCategory as List<SelectListItem>,  "Tất cả", new { @class = "postform resizeselect"})
+        </div>
+        <div class="input-group-btn">
+            <button type="submit" class="btn btn-secondary">
+                <i class="ec ec-search"></i>
+            </button>
+        </div>
+    </div>
+}

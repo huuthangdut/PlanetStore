@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Planet.Web.Models.Products.ProductViewModel>
+
+<section class="home-v1-recently-viewed-products-carousel section-products-carousel animate-in-view fadeIn animated" data-animation="fadeIn">
+    <header>
+        <h2 class="h1">Sản phẩm mới nhất</h2>
+        <div class="owl-nav">
+            <a href="#products-carousel-prev" data-target="#recently-added-products-carousel" class="slider-prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a href="#products-carousel-next" data-target="#recently-added-products-carousel" class="slider-next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div>
+    </header>
+
+    <div id="recently-added-products-carousel">
+        <div class="woocommerce columns-6">
+            <div class="products owl-carousel recently-added-products products-carousel columns-6">
+
+                @foreach (var item in Model)
+                {
+                    var url = $"{item.Alias}-p{item.Id}";
+                    <div class="product">
+                        <div class="product-outer">
+                            <div class="product-inner">
+                                <span class="loop-product-categories">
+                                    <a href="@url" rel="tag">@item.ProductCategory.Name</a>
+                                </span>
+                                <a href="@url">
+                                    <h3>@item.Name</h3>
+                                    <div class="product-thumbnail">
+                                        <img src="/Assets/client/images/blank.gif" data-echo="@item.ThumbnailImage" class="img-responsive" alt="@item.Name">
+                                    </div>
+                                </a>
+
+                                <div class="price-add-to-cart">
+                                    <span class="price">
+                                        <span class="electro-price">
+
+                                            @if (item.PromotionPrice.HasValue)
+                                            {
+                                                <ins>
+                                                    <span class="amount">@item.PromotionPrice.Value.ToString("N0") đ</span>
+                                                </ins>
+                                                <del>
+                                                    <span class="amount">@item.UnitPrice.ToString("N0")</span>
+                                                </del>
+                                            }
+                                            else
+                                            {
+                                                <ins>
+                                                    <span class="amount">@item.UnitPrice.ToString("N0") đ</span>
+                                                </ins>
+                                            }
+
+                                        </span>
+                                    </span>
+                                    <a rel="nofollow" href="javascript:void(0)" class="button add_to_cart_button js-add-to-cart" data-id="@item.Id">Thêm vào giỏ hàng</a>
+                                </div>
+                                <!-- /.price-add-to-cart -->
+
+                                <div class="hover-area">
+                                    <div class="action-buttons">
+
+                                        <a href="#" rel="nofollow" class="add_to_wishlist"> Yêu thích</a>
+
+                                        <a href="#" class="add-to-compare-link"> So sánh</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.product-inner -->
+                        </div>
+                        <!-- /.product-outer -->
+                    </div>
+                    <!-- /.products -->
+                }
+            </div>
+        </div>
+    </div>
+</section>
